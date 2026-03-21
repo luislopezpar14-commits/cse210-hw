@@ -10,20 +10,42 @@ public class Scripture
     {
         _reference = reference;
         _words = new List<Word>();
-        // Constructor will split text into Word objects and populate _words
+        string[] wordTexts = text.Split(' ');
+        foreach (string wordText in wordTexts)
+        {
+            _words.Add(new Word(wordText));
+        }
     }
 
     public void HideRandomWords(int numberToHide)
     {
+        Random random = new Random();
+        for (int i = 0; i < numberToHide; i++)
+        {
+            int randomIndex = random.Next(_words.Count);
+            _words[randomIndex].Hide();
+        }
     }
 
     public string GetDisplayText()
     {
-        return string.Empty;
+        string output = _reference.GetDisplayText() + "\n\n";
+        foreach (Word word in _words)
+        {
+            output += word.GetDisplayText() + " ";
+        }
+        return output;
     }
 
     public bool IsCompletelyHidden()
     {
-        return false;
+        foreach (Word word in _words)
+        {
+            if (!word.IsHidden())
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
