@@ -5,7 +5,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Create a list to store videos
         List<Video> videos = new List<Video>();
 
         Video video1 = new Video("C# Tutorial", "CodeMaster", 1200);
@@ -21,7 +20,6 @@ class Program
         video2.AddComment(new Comment("Grace", "Excellent practical examples."));
         videos.Add(video2);
 
-        // Display all videos and their comments
         foreach (Video video in videos)
         {
             Console.WriteLine($"Title: {video.GetTitle()}");
